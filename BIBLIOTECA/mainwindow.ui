@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>799</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="layoutDirection">
+    <enum>Qt::LayoutDirection::LeftToRight</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>22</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: #1E3A8A;</string>
+        </property>
+        <property name="text">
+         <string>📚 SISTEMA DE GESTIÓN DE BIBLIOTECA</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>DATOS DEL LIBRO</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>CODIGO :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="txtCodigo"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>TITULO :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="txtTitulo"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>AUTOR :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="txtAutor"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>EDITORIAL :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="txtEditorial"/>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>CATEGORIA :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="cbCategoria">
+             <item>
+              <property name="text">
+               <string>PROGRAMACION</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>BASE DE DATOS</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>REDES</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>MATEMATICAS</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>HISTORIA</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>LITERATURA</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>CIENCIAS</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>otros...</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>AÑO :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="txtAnio"/>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>ESTADO :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QRadioButton" name="rbDisponible">
+             <property name="text">
+              <string>DISPONIBLE</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QRadioButton" name="rbPrestado">
+             <property name="text">
+              <string>PRESTADO</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>ESTUDIANTE :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLineEdit" name="txtEstudiante"/>
+           </item>
+           <item row="9" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string>FECHA PRESTAMO :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
+            <widget class="QDateEdit" name="dtPrestamo"/>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>FECHA DEVOLUCION :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1">
+            <widget class="QDateEdit" name="dtDevolucion"/>
+           </item>
+           <item row="12" column="0">
+            <layout class="QVBoxLayout" name="verticalLayout_4"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>LIBROS REGISTRADOS</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QTableWidget" name="tableWidget">
+             <property name="editTriggers">
+              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+             </property>
+             <property name="alternatingRowColors">
+              <bool>true</bool>
+             </property>
+             <property name="selectionMode">
+              <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+             </property>
+             <property name="selectionBehavior">
+              <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+             </property>
+             <property name="sortingEnabled">
+              <bool>true</bool>
+             </property>
+             <property name="columnCount">
+              <number>20</number>
+             </property>
+             <column>
+              <property name="text">
+               <string>CODIGO</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>TITULO</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>AUTOR</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>EDITORIAL</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>CATEGORIA</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>AÑO</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>ESTADO</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>ESTUDIANTE</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>PRESTAMO</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>DEVOLUCION</string>
+              </property>
+             </column>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+             <column/>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_9">
+      <item>
+       <widget class="QPushButton" name="btnAgregar">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LayoutDirection::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>➕ Agregar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnBuscar">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>🔍 Buscar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnActualizar">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>✏️ Actualizar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnEliminar">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>🗑 Eliminar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnLimpiar">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>🧹 Limpiar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnExportar">
+        <property name="minimumSize">
+         <size>
+          <width>120</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>📄 Exportar PDF</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_11">
+      <item>
+       <widget class="QLabel" name="disponibles">
+        <property name="text">
+         <string>📗 DISPONIBLES :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblDisponibles">
+        <property name="styleSheet">
+         <string notr="true">font: bold 16pt;
+color: green;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="Prestados">
+        <property name="text">
+         <string>📕 PRESTADOS :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblPrestados">
+        <property name="styleSheet">
+         <string notr="true">font: bold 16pt;
+color: red;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="Total">
+        <property name="text">
+         <string>📚 TOTAL :</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="lblTotal">
+        <property name="styleSheet">
+         <string notr="true">font: bold 16pt;
+color: blue;</string>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
