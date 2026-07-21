@@ -13,6 +13,11 @@
 #include <QFileDialog>
 #include <QFont>
 
+#include <QtPrintSupport/QPrinter>
+#include <QtGui/QPainter>
+
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,11 +25,82 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    this->setStyleSheet(
-        "QMainWindow{"
-        "border-image:url(:/imagenes/biblioteca.jpg);"
-        "}"
-        );
+    ui->txtEstudiante->setEnabled(false);
+    ui->dtPrestamo->setEnabled(false);
+    ui->dtDevolucion->setEnabled(false);
+
+
+
+    this->setStyleSheet(R"(
+
+        QWidget{
+            background-color:#EAF4FF;
+        }
+
+        QGroupBox{
+            background:white;
+            border:2px solid #BFDFFF;
+            border-radius:10px;
+            font-weight:bold;
+        }
+
+        QGroupBox {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #1E3A8A;
+            border: 2px solid #BFDFFF;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        QGroupBox::title {
+            subcontrol-origin: margin;
+            left: 10px;
+            padding: 0 6px;
+        }
+
+        QLineEdit, QComboBox, QDateEdit{
+            background:white;
+            border:1px solid #BFDFFF;
+            border-radius:5px;
+            padding:3px;
+        }
+
+        QTableWidget{
+            background:white;
+            border:1px solid #BFDFFF;
+            gridline-color:#D6EAF8;
+        }
+
+        QHeaderView::section{
+            background:#4A90E2;
+            color:white;
+            font-weight:bold;
+            border:none;
+            padding:5px;
+        }
+
+        QPushButton{
+            background:#4A90E2;
+            color:white;
+            border-radius:8px;
+            padding:6px;
+            font-weight:bold;
+        }
+
+        QPushButton:hover{
+            background:#357ABD;
+        }
+
+        QPushButton:pressed{
+            background:#2C5F9E;
+        }
+
+    )");
+
+
+
+
 
     ui->groupBox->setStyleSheet(
         "QGroupBox{"
@@ -81,6 +157,13 @@ void MainWindow::on_btnAgregar_clicked()
     Libro libro;
 
     libro.codigo = ui->txtCodigo->text();
+    if(codigoExiste(libro.codigo))
+    {
+        QMessageBox::warning(this,
+                             "Código duplicado",
+                             "Ya existe un libro con ese código.");
+        return;
+    }
     libro.titulo = ui->txtTitulo->text();
     libro.autor = ui->txtAutor->text();
     libro.editorial = ui->txtEditorial->text();
@@ -364,6 +447,41 @@ void MainWindow::on_btnActualizar_clicked()
     QMessageBox::information(this,
                              "Actualizar",
                              "Libro actualizado correctamente");
+
+
+
+    int fila=ui->tableWidget->currentRow();
+
+    if(fila==-1)
+        return;
+
+    ui->tableWidget->item(fila,0)->setText(ui->txtCodigo->text());
+    ui->tableWidget->item(fila,1)->setText(ui->txtTitulo->text());
+    ui->tableWidget->item(fila,2)->setText(ui->txtAutor->text());
+    ui->tableWidget->item(fila,3)->setText(ui->txtEditorial->text());
+    ui->tableWidget->item(fila,4)->setText(ui->cbCategoria->currentText());
+    ui->tableWidget->item(fila,5)->setText(ui->txtAnio->text());
+
+    if(ui->rbDisponible->isChecked())
+        ui->tableWidget->item(fila,6)->setText("Disponible");
+    else
+        ui->tableWidget->item(fila,6)->setText("Prestado");
+
+    ui->tableWidget->item(fila,7)->setText(ui->txtEstudiante->text());
+
+    ui->tableWidget->item(fila,8)->setText(
+        ui->dtPrestamo->date().toString("dd/MM/yyyy"));
+
+    ui->tableWidget->item(fila,9)->setText(
+        ui->dtDevolucion->date().toString("dd/MM/yyyy"));
+
+    Libro libro;
+    guardarLibro(libro);
+
+
+
+    QMessageBox::information(this,"Actualizar",
+                             "Libro actualizado correctamente.");
 }
 
 void MainWindow::on_btnEliminar_clicked()
@@ -416,9 +534,45 @@ void MainWindow::on_btnEliminar_clicked()
                              "Libro eliminado correctamente");
 }
 
-void MainWindow::on_btnLimpiar_clicked()
+void MainWindow::on_btnExportar_clicked()
 {
-    limpiarCampos();
+
+    QString nombreArchivo = QFileDialog::getSaveFileName(
+        this,
+        "Guardar PDF",
+        "",
+        "Archivos PDF (*.pdf)");
+
+    if(nombreArchivo.isEmpty())
+        return;
+
+    QPrinter printer(QPrinter::HighResolution);
+
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(nombreArchivo);
+
+    QPainter painter;
+
+    if(!painter.begin(&printer))
+    {
+        QMessageBox::warning(this,"Error","No se pudo crear el PDF.");
+        return;
+    }
+
+    QRect rect = painter.viewport();
+    QSize size = ui->tableWidget->size();
+
+    size.scale(rect.size(), Qt::KeepAspectRatio);
+
+    painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+    painter.setWindow(ui->tableWidget->rect());
+
+    ui->tableWidget->render(&painter);
+
+    painter.end();
+
+    QMessageBox::information(this,"Éxito","PDF exportado correctamente.");
+
 }
 
 
@@ -428,7 +582,98 @@ void MainWindow::on_btnLimpiar_clicked()
 
 
 
+void MainWindow::on_tableWidget_cellClicked(int row, int column)
+{
+
+    Q_UNUSED(column);
+
+    ui->txtCodigo->setText(ui->tableWidget->item(row,0)->text());
+    ui->txtTitulo->setText(ui->tableWidget->item(row,1)->text());
+    ui->txtAutor->setText(ui->tableWidget->item(row,2)->text());
+    ui->txtEditorial->setText(ui->tableWidget->item(row,3)->text());
+
+    ui->cbCategoria->setCurrentText(
+        ui->tableWidget->item(row,4)->text());
+
+    ui->txtAnio->setText(
+        ui->tableWidget->item(row,5)->text());
+
+    QString estado=ui->tableWidget->item(row,6)->text();
+
+    if(estado=="Disponible")
+        ui->rbDisponible->setChecked(true);
+    else
+        ui->rbPrestado->setChecked(true);
+
+    ui->txtEstudiante->setText(
+        ui->tableWidget->item(row,7)->text());
+
+    ui->dtPrestamo->setDate(
+        QDate::fromString(
+            ui->tableWidget->item(row,8)->text(),
+            "dd/MM/yyyy"));
+
+    ui->dtDevolucion->setDate(
+        QDate::fromString(
+            ui->tableWidget->item(row,9)->text(),
+            "dd/MM/yyyy"));
+
+}
+
+bool MainWindow::codigoExiste(QString codigo)
+{
+    QFile archivo("libros.txt");
+
+    if(!archivo.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QTextStream entrada(&archivo);
+
+    while(!entrada.atEnd())
+    {
+        QString linea = entrada.readLine();
+        QStringList datos = linea.split(";");
+
+        if(datos.size() > 0)
+        {
+            if(datos[0] == codigo)
+            {
+                archivo.close();
+                return true;
+            }
+        }
+    }
+
+    archivo.close();
+    return false;
+}
+
+void MainWindow::on_btnLimpiar_clicked()
+{
+    limpiarCampos();
+}
 
 
+void MainWindow::on_rbDisponible_clicked()
+{
+    ui->txtEstudiante->setEnabled(true);
 
+    ui->dtPrestamo->setEnabled(true);
+    ui->dtDevolucion->setEnabled(true);
+
+
+    ui->txtEstudiante->setFocus();
+
+
+}
+
+
+void MainWindow::on_rbPrestado_clicked()
+{
+    ui->txtEstudiante->clear();
+    ui->txtEstudiante->setEnabled(false);
+
+    ui->dtPrestamo->setEnabled(false);
+    ui->dtDevolucion->setEnabled(false);
+}
 

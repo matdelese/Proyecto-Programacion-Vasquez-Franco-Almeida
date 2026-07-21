@@ -47,6 +47,14 @@ private slots:
 
     void on_btnLimpiar_clicked();
 
+    void on_btnExportar_clicked();
+
+    void on_tableWidget_cellClicked(int row, int column);
+
+    void on_rbDisponible_clicked();
+
+    void on_rbPrestado_clicked();
+
 private:
 
     Ui::MainWindow *ui;
@@ -55,6 +63,7 @@ private:
     void mostrarLibros();
     void limpiarCampos();
     void actualizarEstadisticas();
+    bool codigoExiste(QString codigo);
 };
 
 #endif

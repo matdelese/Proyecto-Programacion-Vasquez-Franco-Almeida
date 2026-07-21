@@ -8,6 +8,8 @@ Login::Login(QWidget *parent)
     , ui(new Ui::dialog)
 {
     ui->setupUi(this);
+    this->setFixedSize(500,300);
+
 
     ui->lblTitulo->setStyleSheet(
         "font-size:22px;"
@@ -135,6 +137,7 @@ Login::Login(QWidget *parent)
         "background:#2980b9;"
         "}"
         );
+
 }
 
 Login::~Login()
@@ -147,6 +150,7 @@ void Login::on_btnIngresar_clicked()
 {
     QString usuario = ui->txtUsuario->text().trimmed();
     QString clave = ui->txtPassword->text().trimmed();
+
 
     // Validar usuario vacío
     if(usuario.isEmpty())

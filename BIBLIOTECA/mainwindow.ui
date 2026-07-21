@@ -55,24 +55,23 @@
        <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
          <widget class="QGroupBox" name="groupBox">
+          <property name="maximumSize">
+           <size>
+            <width>272</width>
+            <height>16777215</height>
+           </size>
+          </property>
           <property name="title">
-           <string>DATOS DEL LIBRO</string>
+           <string>📚 DATOS DEL LIBRO</string>
           </property>
           <layout class="QFormLayout" name="formLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>CODIGO :</string>
-             </property>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QLineEdit" name="txtCodigo"/>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_3">
              <property name="text">
-              <string>TITULO :</string>
+              <string>Titulo :</string>
              </property>
             </widget>
            </item>
@@ -82,7 +81,7 @@
            <item row="2" column="0">
             <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>AUTOR :</string>
+              <string>Autor :</string>
              </property>
             </widget>
            </item>
@@ -92,7 +91,7 @@
            <item row="3" column="0">
             <widget class="QLabel" name="label_10">
              <property name="text">
-              <string>EDITORIAL :</string>
+              <string>Editorial :</string>
              </property>
             </widget>
            </item>
@@ -102,7 +101,7 @@
            <item row="4" column="0">
             <widget class="QLabel" name="label_9">
              <property name="text">
-              <string>CATEGORIA :</string>
+              <string>Categoria :</string>
              </property>
             </widget>
            </item>
@@ -153,7 +152,7 @@
            <item row="5" column="0">
             <widget class="QLabel" name="label_8">
              <property name="text">
-              <string>AÑO :</string>
+              <string>Año :</string>
              </property>
             </widget>
            </item>
@@ -163,28 +162,28 @@
            <item row="6" column="0">
             <widget class="QLabel" name="label_7">
              <property name="text">
-              <string>ESTADO :</string>
+              <string>Estado :</string>
              </property>
             </widget>
            </item>
            <item row="6" column="1">
             <widget class="QRadioButton" name="rbDisponible">
              <property name="text">
-              <string>DISPONIBLE</string>
+              <string>Disponible</string>
              </property>
             </widget>
            </item>
            <item row="7" column="1">
             <widget class="QRadioButton" name="rbPrestado">
              <property name="text">
-              <string>PRESTADO</string>
+              <string>Prestado</string>
              </property>
             </widget>
            </item>
            <item row="8" column="0">
             <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>ESTUDIANTE :</string>
+              <string>Estudiante :</string>
              </property>
             </widget>
            </item>
@@ -194,7 +193,7 @@
            <item row="9" column="0">
             <widget class="QLabel" name="label_5">
              <property name="text">
-              <string>FECHA PRESTAMO :</string>
+              <string>Fecha de prestamo :</string>
              </property>
             </widget>
            </item>
@@ -204,7 +203,7 @@
            <item row="10" column="0">
             <widget class="QLabel" name="label_4">
              <property name="text">
-              <string>FECHA DEVOLUCION :</string>
+              <string>Fecha de devolucion:</string>
              </property>
             </widget>
            </item>
@@ -214,13 +213,20 @@
            <item row="12" column="0">
             <layout class="QVBoxLayout" name="verticalLayout_4"/>
            </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Codigo :</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_2">
           <property name="title">
-           <string>LIBROS REGISTRADOS</string>
+           <string>📖 LIBROS REGISTRADOS</string>
           </property>
           <layout class="QGridLayout" name="gridLayout">
            <item row="0" column="0">
